@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="Post")
+@Table(name="Users")
 @Getter
 @Setter
 @NoArgsConstructor
