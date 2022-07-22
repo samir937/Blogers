@@ -18,6 +18,11 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserRepo userRepo;
 
+	public UserServiceImpl(UserRepo userRepo) {
+		super();
+		this.userRepo = userRepo;
+	}
+
 	@Override
 	public UserDto createUser(UserDto user) {
 		// TODO Auto-generated method stub
