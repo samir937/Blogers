@@ -14,12 +14,22 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.AnyRequestMatcher;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.example.blog.service.CustomUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
+@EnableWebMvc
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
+	
+	public static final String [] PUBLIC_URLS= {
+					"/security/token",
+					"/v3/api-docs",
+					"/v2/api-docs",
+					"/swagger-ui/**",
+					"/swagger-resources/**",
+					"/webjars/**"};
 	
 	@Autowired
 	private CustomUserDetailsService customUserDetails;
@@ -45,7 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.cors()
 			.disable()
 			.authorizeRequests()
-			.antMatchers("/security/token").permitAll()
+			.antMatchers(PUBLIC_URLS).permitAll()
 			.anyRequest().authenticated()
 			.and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
