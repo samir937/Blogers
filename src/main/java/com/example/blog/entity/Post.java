@@ -40,6 +40,64 @@ public class Post {
 	@ManyToOne
 	@JoinColumn(name="category_id")
 	private Category category;
+
+	public int getPostId() {
+		return postId;
+	}
+
+	public void setPostId(int postId) {
+		this.postId = postId;
+	}
+
+	public String getPostTitle() {
+		return postTitle;
+	}
+
+	public void setPostTitle(String postTitle) {
+		this.postTitle = postTitle;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getPostImage() {
+		return postImage;
+	}
+
+	public void setPostImage(String postImage) {
+		this.postImage = postImage;
+	}
+
+	public Date getAddedDate() {
+		return addedDate;
+	}
+
+	public void setAddedDate(Date addedDate) {
+		this.addedDate = addedDate;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+	
+	
 	
 	
 }
