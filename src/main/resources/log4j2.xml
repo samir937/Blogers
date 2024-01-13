@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+
+    <Properties>
+        <Property name="sleuthInfo">%X{traceId},%X{spanId},%X{orderId}</Property>
+        <property name="LOG_LEVEL" value="%highlight{%-5p}{STYLE=Default}" />
+        <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [${sleuthInfo}] [%-15t] %-50C{1.}:  %msg%n%throwable" />
+        <property name="FILE_PATTERN_LAYOUT" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p [${sleuthInfo}] [%-15t] %-50C{1.}:  %msg%n%throwable" />
+        <property name="BASE_PATH" value="./logs" />
+    </Properties>
+
+    <Properties>
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd'T'HH:mm:ss.SSSZ} %p %m%n</Property>
+        <Property name="BASE_PATH">./logs</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout disableAnsi= "true" pattern="%highlight{${LOG_PATTERN}}" />
+        </Console>
+        <RollingFile name="file"
+                     fileName="${BASE_PATH}/Blogger/blog-service.log"
+                     filePattern="${BASE_PATH}/%d{yyyy-MM}/archive_%d{yyyy-MM-dd-HH}blog-service%i.log.gz">
+            <PatternLayout pattern="${FILE_PATTERN_LAYOUT}" />
+            <Policies>
+                <SizeBasedTriggeringPolicy size="19500KB" />
+            </Policies>
+            <DefaultRolloverStrategy max="1" />
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="file" />
+        </Root>
+        <Logger name="com.example.blog" level="debug" additivity="false">
+            <AppenderRef ref="file" />
+            <AppenderRef ref="console" />
+        </Logger>
+    </Loggers>
+</Configuration>
